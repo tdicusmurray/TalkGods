@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TalkGods</title>
+
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/gsdk.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://webchat.freenode.net/static/css/app.fa69bd3782146438be73315adb365a63.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+</head>
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="index.html">TalkGods</a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+    <div id='active_call'>
+      <video id='my-video'></video>
+      <video id='their-video'></video>
+    </div>
+    <main class='container' style='float:left;width:200px;'>
+        <center>
+          <button class="btn btn-outline-success" type="submit" id="crypto_btn" name="crypto_btn">Buy #HashCash</button>
+          <div id='hashtags'>
+
+          </div>
+        </center>
+        <div id="google_translate_element"></div>
+    </main>
+
+  <main class="container" style='float:left;width:640px;'>
+    <div class="row">
+      <div>
+        <form id='post_form' action="">
+          <div class="input-group">
+             <label for="post"> </label>
+            <input class="form-control" id="post" type="text" name="content" placeholder="What's on your mind?">
+            <span class="input-group-btn">
+            <button class="btn btn-success" type="submit" name="post_btn">Post</button>
+            <button class="btn btn-primary" onclick="return false;" id="run_ad" name="run_ad">Run Ad</button>
+            </span>
+          </div>
+        </form>
+
+        <form id="payment-form">
+              <div class="form-row">
+                <label for="card-element">
+                </label>
+                <div id="card-element">
+                </div>
+                <div id="card-errors" role="alert"></div>
+              </div>
+
+              <button id='run_ad_btn' class="btn btn-danger">Run!</button>
+            </form><br />
+        <div id='timeline'>
+          
+      </div>
+      <div id='post_template' class="panel panel-default">
+            <div class="panel-body">
+              <p>{{text}}</p>
+              <p>{{{youtube}}}</p>
+            </div>
+            <div class="panel-footer">
+              <span>{{created}} by {{person_id}}</span> 
+              <span class="pull-right"><a class="text-danger" href="#">&lt;3 </a><a class="text-danger" href="#">&lt;/3</a></span>
+            </div>
+          </div>
+        </div>
+    </div>
+                  <div id="controls">
+  <div id="info">
+    <div id="client-name"></div>
+    <div id="output-selection">
+      <label>Ringtone Devices</label>
+      <select id="ringtone-devices" multiple></select>
+      <label>Speaker Devices</label>
+      <select id="speaker-devices" multiple></select>
+    </div>
+
+          <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+          <script src="js/jquery-ui.js"></script>
+
+  <script type="text/javascript" src="js/transcription.js"></script>
+              <script type="text/javascript" src="https://media.twiliocdn.com/sdk/js/client/v1.7/twilio.min.js"></script>
+          <script type="text/javascript" src="js/quickstart.js"></script>
+  </div>
+
+</div>
+    <div id='chat_window'>
+      <div class="w3-container">
+        <div id='person_box'>
+          <img src="/img/my_avatar.png" class="person_photo w3-bar-item w3-circle w3-hide-small">
+          <span id='active_chat' class="w3-large">{{first_name}} {{last_name}} <span onclick='call_peer()' class="glyphicon glyphicon-facetime-video"></span>
+        <span onclick='phoneCall();' class='glyphicon glyphicon-phone'></span>
+        <span onclick='endCall()' class='glyphicon glyphicon-remove'></span>
+        <input id="phone-number" type="hidden" value="7028485785" />
+      </span>
+        </div>
+        <ul class='text_container'>
+          <li  class="w3-bar">
+<div class="w3-bar-item">
+    <div class="kiwi-container kiwi-container--sidebar-open">
+        <div class="kiwi-container-toggledraw-statebrowser">
+            <div class="kiwi-container-toggledraw-statebrowser-messagecount"><span class="kiwi-container-statebrowser-messagecount-alert"></span> <span class="kiwi-container-statebrowser-messagecount-close"><i aria-hidden="true" class="fa fa-times"></i></span></div>
+        </div>
+        <div  class="kiwi-container-content">
+            <div id='active_chat_messages_container' class="kiwi-messagelist">
+                <div id='active_chat_messages' class="kiwi-messagelist-item">
+                        <div class="kiwi-messagelist-modern-right">
+                            <div class="kiwi-messagelist-top">
+                                <div title="9/6/2019, 7:27:37 PM" class="kiwi-messagelist-time">
+                                    {{created}}
+                                </div>
+                            </div>
+                            <div class="kiwi-messagelist-body">{{message}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class='message'>
+      <form id='chat_form'>
+        <select id="voiceSelect"></select>
+        <input type='text' id='chat_text' class='form-control' name='chat' />
+      </form>
+    </div>
+</div>
+</li>
+        </ul>
+      </div>
+    </div>
+    <div class="w3-container">
+      <ul class="friend_listw3-ul w3-card-4">
+        <li class="w3-bar friend">
+          <img src="/img/my_avatar.png" class="my_avatar w3-bar-item w3-circle w3-hide-small">
+          <div class="w3-bar-item">
+            <span class="w3-large">Teddy Murray</span><br>
+            <span>Software Engineer</span>
+          </div>
+        </li>
+      </ul>
+   </div>
+  </main>
+
+  <script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+}
+</script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/peerjs.min.js"></script>
+  <script type="text/javascript" src="js/youtube.js"></script>
+
+  <script src="js/websocket.js"></script>
+  <script src="js/webrtc.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.js"></script>
+  <script src="https://js.stripe.com/v3/"></script>
+  <script type="text/javascript" src="js/payment.js"></script>
+</body>
+</html>
